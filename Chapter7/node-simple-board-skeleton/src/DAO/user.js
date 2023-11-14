@@ -12,9 +12,7 @@ const getByUsername = async (username) => {
 const create = async (username, password, displayName) => {
   const sql =
     "INSERT INTO users VALUES (DEFAULT,?,?,?,DEFAULT,DEFAULT,DEFAULT)";
-  var res = await runQuery(sql, [username, displayName, password]);
-
-  return res.insertId;
+  await runQuery(sql, [username, displayName, password]);
 };
 
 module.exports = {

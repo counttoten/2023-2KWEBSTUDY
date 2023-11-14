@@ -45,7 +45,7 @@ const getById = async (id) => {
     "WHERE B.id = ? AND B.is_active = 1 AND B.is_deleted = 0";
   var res = await runQuery(sql, [id]);
 
-  return res[0];
+  return replaceDate(res[0]);
 };
 
 const getByIdAndAuthor = async (id, author) => {
@@ -54,13 +54,14 @@ const getByIdAndAuthor = async (id, author) => {
     "FROM articles WHERE id = ? AND author = ? AND is_active = 1 AND is_deleted = 0";
   var res = await runQuery(sql, [id, author.id]);
 
-  return res[0];
+  return replaceDate(res[0]);
 };
 
 const create = async (title, content, author) => {
   const sql =
     "INSERT INTO articles VALUES (DEFAULT, ?, ?, ?, DEFAULT,DEFAULT,DEFAULT,DEFAULT)";
   var res = await runQuery(sql, [title, content, author.id]);
+  return res.insertId;
 };
 
 const update = async (id, title, content) => {
