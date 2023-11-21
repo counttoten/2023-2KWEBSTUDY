@@ -39,7 +39,7 @@ block content
 
         if hasNext
             li.page-item
-                a.page-link(href=`/articles/page/${page + 1}`) Next Page &gt;&gt;
+                a.page-link(href=`/articles/page/${Number(page) + 1}`) Next Page &gt;&gt;
         else
             li.page-item.disabled
                 a.page-link Next Page &gt;&gt;
